@@ -272,22 +272,6 @@ namespace SeriousMonoGame2
                             ChoiceNumber = int.Parse(line.Substring(7));
                             break;
                         }
-                        else if (line.StartsWith("MAINMENU"))
-                        {
-                            ChoiceNumber = -1;
-                            InMainMenu = true;
-                            TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                            TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                            TextButton1Text = "Start";
-                            TextButton2Text = "Editor Mode";
-                            SkipMainMenuFalse = true;
-                            FontText = "";
-                            StreamReader sr = new StreamReader("script/title.txt");
-                            string lineread = sr.ReadLine();
-                            sr.Close();
-                            EnterText("Welcome to the Text-O-Matic 2000.\nCurrent adventure: " + lineread + ".", 10);
-                            break;
-                        }
                     }
                 }
 
@@ -297,7 +281,7 @@ namespace SeriousMonoGame2
                     InEditorMode = true;
                 }
 
-                if (ChoiceNumber != 0 && i == 1 && !InMainMenu)
+                if (ChoiceNumber != 0 && i == 1 && !InMainMenu || ChoiceNumber != 0 && i == 2 && !InMainMenu || ChoiceNumber != 0 && i == 3 && !InMainMenu || ChoiceNumber != 0 && i == 4 && !InMainMenu)
                 {
                     var lines = File.ReadLines("script/script.txt");
                     foreach (var line in lines)
@@ -398,343 +382,33 @@ namespace SeriousMonoGame2
                                 break;
                             }
                         }
-                        if (line.StartsWith("IFBUTTON1") && ChoiceNumber == int.Parse(line.Substring(10)))
+                        if (i == 1)
                         {
-                            buttonhit = true;
-                        }
-                    }
-                    ChoiceNumber++;
-                }
-
-                if (ChoiceNumber != 0 && i == 2 && !InMainMenu)
-                {
-                    var lines = File.ReadLines("script/script.txt");
-                    foreach (var line in lines)
-                    {
-                        if (buttonhit)
-                        {
-                            string[] line2 = line.Split('|');
-                            if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length == 1)
+                            if (line.StartsWith("IFBUTTON1") && ChoiceNumber == int.Parse(line.Substring(10)))
                             {
-                                if (FontText == "")
-                                {
-                                    EnterText(line2[0], 50, 0);
-                                }
-                                else
-                                {
-                                    if (line2[0].StartsWith("--"))
-                                    {
-                                        EnterText(line2[0].Substring(2), 50, 0);
-                                    }
-                                    else
-                                    {
-                                        EnterText("\n" + line2[0], 50, 0);
-                                    }
-                                }
-                                await Task.Delay(line2[0].Length * 70);
-                            }
-                            else if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length > 1)
-                            {
-                                if (FontText == "")
-                                {
-                                    EnterText(line2[0], 50, 0);
-                                }
-                                else
-                                {
-                                    if (line2[0].StartsWith("--"))
-                                    {
-                                        EnterText(line2[0].Substring(2), 50, 0);
-                                    }
-                                    else
-                                    {
-                                        EnterText("\n" + line2[0], 50, 0);
-                                    }
-                                }
-                                await Task.Delay(line2[0].Length * 70 + int.Parse(line2[1]));
-                            }
-                            else if (line == "CLEAR")
-                            {
-                                FontText = "";
-                            }
-                            else if (line == "CLEARBUTTONS")
-                            {
-                                ClearButtons(Content);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT1"))
-                            {
-                                TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton1Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT2"))
-                            {
-                                TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton2Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT3"))
-                            {
-                                TextButton3 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton3Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT4"))
-                            {
-                                TextButton4 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton4Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("IFBUTTON"))
-                            {
-                                ChoiceNumber = int.Parse(line.Substring(10)) - 1;
-                                break;
-                            }
-                            else if (line.StartsWith("CHOICE"))
-                            {
-                                ChoiceNumber = int.Parse(line.Substring(7)) - 1;
-                                break;
-                            }
-                            else if (line.StartsWith("MAINMENU"))
-                            {
-                                ChoiceNumber = -1;
-                                InMainMenu = true;
-                                TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton1Text = "Start";
-                                TextButton2Text = "Editor Mode";
-                                SkipMainMenuFalse = true;
-                                FontText = "";
-                                StreamReader sr = new StreamReader("script/title.txt");
-                                string lineread = sr.ReadLine();
-                                sr.Close();
-                                EnterText("Welcome to the Text-O-Matic 2000.\nCurrent adventure: " + lineread + ".", 10);
-                                break;
+                                buttonhit = true;
                             }
                         }
-                        if (line.StartsWith("IFBUTTON2") && ChoiceNumber == int.Parse(line.Substring(10)))
+                        else if (i == 2)
                         {
-                            buttonhit = true;
-                        }
-                    }
-                    ChoiceNumber++;
-                }
-
-                if (ChoiceNumber != 0 && i == 3 && !InMainMenu)
-                {
-                    var lines = File.ReadLines("script/script.txt");
-                    foreach (var line in lines)
-                    {
-                        if (buttonhit)
-                        {
-                            string[] line2 = line.Split('|');
-                            if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length == 1)
+                            if (line.StartsWith("IFBUTTON2") && ChoiceNumber == int.Parse(line.Substring(10)))
                             {
-                                if (FontText == "")
-                                {
-                                    EnterText(line2[0], 50, 0);
-                                }
-                                else
-                                {
-                                    if (line2[0].StartsWith("--"))
-                                    {
-                                        EnterText(line2[0].Substring(2), 50, 0);
-                                    }
-                                    else
-                                    {
-                                        EnterText("\n" + line2[0], 50, 0);
-                                    }
-                                }
-                                await Task.Delay(line2[0].Length * 70);
-                            }
-                            else if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length > 1)
-                            {
-                                if (FontText == "")
-                                {
-                                    EnterText(line2[0], 50, 0);
-                                }
-                                else
-                                {
-                                    if (line2[0].StartsWith("--"))
-                                    {
-                                        EnterText(line2[0].Substring(2), 50, 0);
-                                    }
-                                    else
-                                    {
-                                        if (line2[0].StartsWith("--"))
-                                        {
-                                            EnterText(line2[0].Substring(2), 50, 0);
-                                        }
-                                        else
-                                        {
-                                            EnterText("\n" + line2[0], 50, 0);
-                                        }
-                                    }
-                                }
-                                await Task.Delay(line2[0].Length * 70 + int.Parse(line2[1]));
-                            }
-                            else if (line == "CLEAR")
-                            {
-                                FontText = "";
-                            }
-                            else if (line == "CLEARBUTTONS")
-                            {
-                                ClearButtons(Content);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT1"))
-                            {
-                                TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton1Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT2"))
-                            {
-                                TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton2Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT3"))
-                            {
-                                TextButton3 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton3Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT4"))
-                            {
-                                TextButton4 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton4Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("IFBUTTON"))
-                            {
-                                ChoiceNumber = int.Parse(line.Substring(10)) - 1;
-                                break;
-                            }
-                            else if (line.StartsWith("CHOICE"))
-                            {
-                                ChoiceNumber = int.Parse(line.Substring(7));
-                                break;
-                            }
-                            else if (line.StartsWith("MAINMENU"))
-                            {
-                                ChoiceNumber = -1;
-                                InMainMenu = true;
-                                TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton1Text = "Start";
-                                TextButton2Text = "Editor Mode";
-                                SkipMainMenuFalse = true;
-                                FontText = "";
-                                StreamReader sr = new StreamReader("script/title.txt");
-                                string lineread = sr.ReadLine();
-                                sr.Close();
-                                EnterText("Welcome to the Text-O-Matic 2000.\nCurrent adventure: " + lineread + ".", 10);
-                                break;
+                                buttonhit = true;
                             }
                         }
-                        if (line.StartsWith("IFBUTTON3") && ChoiceNumber == int.Parse(line.Substring(10)))
+                        else if (i == 3)
                         {
-                            buttonhit = true;
-                        }
-                    }
-                    ChoiceNumber++;
-                }
-
-                if (ChoiceNumber != 0 && i == 4 && !InMainMenu)
-                {
-                    var lines = File.ReadLines("script/script.txt");
-                    foreach (var line in lines)
-                    {
-                        if (buttonhit)
-                        {
-                            string[] line2 = line.Split('|');
-                            if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length == 1)
+                            if (line.StartsWith("IFBUTTON3") && ChoiceNumber == int.Parse(line.Substring(10)))
                             {
-                                if (FontText == "")
-                                {
-                                    EnterText(line2[0], 50, 0);
-                                }
-                                else
-                                {
-                                    if (line2[0].StartsWith("--"))
-                                    {
-                                        EnterText(line2[0].Substring(2), 50, 0);
-                                    }
-                                    else
-                                    {
-                                        EnterText("\n" + line2[0], 50, 0);
-                                    }
-                                }
-                                await Task.Delay(line2[0].Length * 70);
-                            }
-                            else if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length > 1)
-                            {
-                                if (FontText == "")
-                                {
-                                    EnterText(line2[0], 50, 0);
-                                }
-                                else
-                                {
-                                    if (line2[0].StartsWith("--"))
-                                    {
-                                        EnterText(line2[0].Substring(2), 50, 0);
-                                    }
-                                    else
-                                    {
-                                        EnterText("\n" + line2[0], 50, 0);
-                                    }
-                                }
-                                await Task.Delay(line2[0].Length * 70 + int.Parse(line2[1]));
-                            }
-                            else if (line == "CLEAR")
-                            {
-                                FontText = "";
-                            }
-                            else if (line == "CLEARBUTTONS")
-                            {
-                                ClearButtons(Content);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT1"))
-                            {
-                                TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton1Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT2"))
-                            {
-                                TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton2Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT3"))
-                            {
-                                TextButton3 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton3Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("BUTTONTEXT4"))
-                            {
-                                TextButton4 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton4Text = line.Substring(12);
-                            }
-                            else if (line.StartsWith("IFBUTTON"))
-                            {
-                                ChoiceNumber = int.Parse(line.Substring(10)) - 1;
-                                break;
-                            }
-                            else if (line.StartsWith("CHOICE"))
-                            {
-                                ChoiceNumber = int.Parse(line.Substring(7));
-                                break;
-                            }
-                            else if (line.StartsWith("MAINMENU"))
-                            {
-                                ChoiceNumber = -1;
-                                InMainMenu = true;
-                                TextButton1 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton2 = Content.Load<Texture2D>("Images/TextButton");
-                                TextButton1Text = "Start";
-                                TextButton2Text = "Editor Mode";
-                                SkipMainMenuFalse = true;
-                                FontText = "";
-                                StreamReader sr = new StreamReader("script/title.txt");
-                                string lineread = sr.ReadLine();
-                                sr.Close();
-                                EnterText("Welcome to the Text-O-Matic 2000.\nCurrent adventure: " + lineread + ".", 10);
-                                break;
+                                buttonhit = true;
                             }
                         }
-                        if (line.StartsWith("IFBUTTON4") && ChoiceNumber == int.Parse(line.Substring(10)))
+                        else if (i == 4)
                         {
-                            buttonhit = true;
+                            if (line.StartsWith("IFBUTTON4") && ChoiceNumber == int.Parse(line.Substring(10)))
+                            {
+                                buttonhit = true;
+                            }
                         }
                     }
                     ChoiceNumber++;
