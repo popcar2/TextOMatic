@@ -1,0 +1,101 @@
+//CHEAT SHEET:
+// Every new line in the txt file is a new line in the program. There is a small pause after every line.
+// // is a comment.
+// -- does not make a new line
+// (text) | (number)  makes a delay after typing the text. It's measured in miliseconds
+// CLEAR removes all text on screen
+// CLEARBUTTONS removes all text on buttons and deactivates them
+// \n creates a new line (useful for continuing text without pausing)
+// BUTTONTEXT1 (text)  puts text on button 1 and activates it
+// IFBUTTON1 (number)  Will stop typing and wait. The number determines which choice number it is, starting from 1.
+//                     If activated, it will read all text under the IFBUTTON command.
+//                     If you hit an IFBUTTON, the choice number will automatically be set to that if's choice number.
+// CHOICE (number)  sets your choice number. Use only in the last IFBUTTON. Try to mimic what I'm doing here to avoid issues.
+//                     Make IFBUTTONs with the same choice number to provide multiple choices for the same prompt!
+// I added a slight pause before starting because the game reads 1 line every frame. Sometimes too many comments
+// can make the program skip the first line.
+// MAINMENU   Goes back to main menu.
+
+CLEAR
+CLEARBUTTONS
+ | 1500
+???: Hello. | 100
+???: You have been chosen... To try out the Text-O-Matic.
+???: My name is... | 250
+--popcar2.
+popcar2: I mean, really, you probably already know that.
+popcar2: Anyways, welcome, and stuff.
+popcar2: So... You can easily create an adventure like this. The text edit feature is still in the works.
+popcar2: Also, there's no music sadly. But hey, pre-set music can ruin the immersion, right?
+popcar2: If I add elevator music, it won't mix well with horror stories.
+popcar2: Anyways... What do you think so far? Are you interested?
+BUTTONTEXT1 Interested
+BUTTONTEXT2 Uninterested
+//
+IFBUTTON1 1
+CLEAR
+CLEARBUTTONS
+popcar2: Good. I don't really have a text based adventure to show you, but this is close enough.
+popcar2: You're gonna have to write your own!
+popcar2: To start, go to the game directory and open the folder called "Script".
+popcar2: There will be a text file called script.txt . It's where you can type your stuff!
+popcar2: Any questions?
+BUTTONTEXT1 Tutorial for text editor?
+BUTTONTEXT2 Upcoming features?
+BUTTONTEXT3 Known bugs?
+BUTTONTEXT4 Continue
+//
+IFBUTTON1 2
+CLEAR
+CLEARBUTTONS
+popcar2: It's really simple. The script file including this has everything you need to know.
+popcar2: If that still doesn't explain well, there's another script file inside another folder\ncalled The Fausto Adventures.
+popcar2: It's full of inside jokes and people you wouldn't know but I think it'll help to see examples.
+popcar2: Anything else you want to know?
+BUTTONTEXT1 Tutorial for text editor?
+BUTTONTEXT2 Upcoming features?
+BUTTONTEXT3 Known bugs?
+BUTTONTEXT4 Continue
+//
+IFBUTTON2 2
+CLEAR
+CLEARBUTTONS
+popcar2: Nothing in mind right now, really. Just some polishing up and bug fixes.
+popcar2: If you have suggestions, do tell me.
+popcar2: Anything else you want to know?
+BUTTONTEXT1 Tutorial for text editor?
+BUTTONTEXT2 Upcoming features?
+BUTTONTEXT3 Known bugs?
+BUTTONTEXT4 Continue
+//
+IFBUTTON3 2
+CLEAR
+CLEARBUTTONS
+popcar2: There are a couple, but most of them are unimportant.
+popcar2: An example of an unimportant one would be if you clicked a button in the main menu before it finished\ntyping its text, it'd skip the first line of the file.
+popcar2: An important glitch right now is that sometimes a line of text would skip if there wasn't a long enough\npause, it'd skip the next line of text.
+popcar2: If you encounter this glitch, just add a small delay to the line.
+popcar2: Anything else you want to know?
+BUTTONTEXT1 Tutorial for text editor?
+BUTTONTEXT2 Upcoming features?
+BUTTONTEXT3 Known bugs?
+BUTTONTEXT4 Continue
+//
+IFBUTTON4 2
+CLEAR
+CLEARBUTTONS
+popcar2: Alright, that's pretty much it.
+popcar2: Now get out there and make some adventures!
+popcar2: And obviously, give me feedback later.
+popcar2: Cya!
+BUTTONTEXT1 Back to main menu
+IFBUTTON1 3
+MAINMENU
+//
+IFBUTTON2 1
+CLEARBUTTONS
+You: I don't really care. | 500
+popcar2: Oh...| 500
+-- Well, if you ever change your mind... The button is over there, I guess...
+BUTTONTEXT1 Interested
+CHOICE 1
