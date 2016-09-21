@@ -61,6 +61,7 @@ namespace SeriousMonoGame2
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
             Window.Position = new Point(0, 0);
+            Window.Title = "Text-O-Matic 2000 - BETA";
             StreamReader sr = new StreamReader("script/title.txt");
             string line = sr.ReadLine();
             sr.Close();
@@ -357,7 +358,7 @@ namespace SeriousMonoGame2
                             }
                             else if (line.StartsWith("IFBUTTON"))
                             {
-                                ChoiceNumber = int.Parse(line.Substring(10)) - 1;
+                                ChoiceNumber = int.Parse(line.Substring(10));
                                 break;
                             }
                             else if (line.StartsWith("CHOICE"))
@@ -367,7 +368,7 @@ namespace SeriousMonoGame2
                             }
                             else if (line.StartsWith("MAINMENU"))
                             {
-                                ChoiceNumber = -1;
+                                ChoiceNumber = 0;
                                 InMainMenu = true;
                                 TextButton1 = Content.Load<Texture2D>("Images/TextButton");
                                 TextButton2 = Content.Load<Texture2D>("Images/TextButton");
@@ -411,7 +412,6 @@ namespace SeriousMonoGame2
                             }
                         }
                     }
-                    ChoiceNumber++;
                 }
                 if (!SkipMainMenuFalse)
                 {
