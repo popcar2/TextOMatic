@@ -194,6 +194,9 @@ namespace SeriousMonoGame2
                 {
                     var lines = File.ReadLines("script/script.txt");
                     ChoiceNumber++;
+                    ClearButtons(Content);
+                    FontText = "";
+                    await Task.Delay(1000);
                     foreach (var line in lines)
                     {
                         string[] line2 = line.Split('|');
