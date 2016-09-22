@@ -204,39 +204,39 @@ namespace SeriousMonoGame2
                         {
                             if (FontText == "")
                             {
-                                EnterText(line2[0], 50, 0);
+                                EnterText(line2[0], 40, 0);
                             }
                             else
                             {
                                 if (line2[0].StartsWith("--"))
                                 {
-                                    EnterText(line2[0].Substring(2), 50, 0);
+                                    EnterText(line2[0].Substring(2), 40, 0);
                                 }
                                 else
                                 {
-                                    EnterText("\n" + line2[0], 50, 0);
+                                    EnterText("\n" + line2[0], 40, 0);
                                 }
                             }
-                            await Task.Delay(line2[0].Length * 70);
+                            await Task.Delay(line2[0].Length * 58);
                         }
                         else if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length > 1)
                         {
                             if (FontText == "")
                             {
-                                EnterText(line2[0], 50, 0);
+                                EnterText(line2[0], 40, 0);
                             }
                             else
                             {
                                 if (line2[0].StartsWith("--"))
                                 {
-                                    EnterText(line2[0].Substring(2), 50, 0);
+                                    EnterText(line2[0].Substring(2), 40, 0);
                                 }
                                 else
                                 {
-                                    EnterText("\n" + line2[0], 50, 0);
+                                    EnterText("\n" + line2[0], 40, 0);
                                 }
                             }
-                            await Task.Delay(line2[0].Length * 70 + int.Parse(line2[1]));
+                            await Task.Delay(line2[0].Length * 58 + int.Parse(line2[1]));
                         }
                         else if (line == "CLEAR")
                         {
@@ -297,39 +297,39 @@ namespace SeriousMonoGame2
                             {
                                 if (FontText == "")
                                 {
-                                    EnterText(line2[0], 50, 0);
+                                    EnterText(line2[0], 40, 0);
                                 }
                                 else
                                 {
                                     if (line2[0].StartsWith("--"))
                                     {
-                                        EnterText(line2[0].Substring(2), 50, 0);
+                                        EnterText(line2[0].Substring(2), 40, 0);
                                     }
                                     else
                                     {
-                                        EnterText("\n" + line2[0], 50, 0);
+                                        EnterText("\n" + line2[0], 40, 0);
                                     }
                                 }
-                                await Task.Delay(line2[0].Length * 70);
+                                await Task.Delay(line2[0].Length * 58);
                             }
                             else if (line != "CLEAR" && line != "CLEARBUTTONS" && !line.StartsWith("BUTTONTEXT") && line != "PROMPT" && !line.StartsWith("IFBUTTON") && !line.StartsWith("//") && !line.StartsWith("CHOICE") && !line.StartsWith("MAINMENU") && line2.Length > 1)
                             {
                                 if (FontText == "")
                                 {
-                                    EnterText(line2[0], 50, 0);
+                                    EnterText(line2[0], 40, 0);
                                 }
                                 else
                                 {
                                     if (line2[0].StartsWith("--"))
                                     {
-                                        EnterText(line2[0].Substring(2), 50, 0);
+                                        EnterText(line2[0].Substring(2), 40, 0);
                                     }
                                     else
                                     {
-                                        EnterText("\n" + line2[0], 50, 0);
+                                        EnterText("\n" + line2[0], 40, 0);
                                     }
                                 }
-                                await Task.Delay(line2[0].Length * 70 + int.Parse(line2[1]));
+                                await Task.Delay(line2[0].Length * 58 + int.Parse(line2[1]));
                             }
                             else if (line == "CLEAR")
                             {
